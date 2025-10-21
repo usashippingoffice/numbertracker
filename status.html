@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shipment Status</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 50px;
+    }
+
+    .container {
+      background: #fff;
+      padding: 40px;
+      max-width: 700px;
+      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      color: #28a745;
+    }
+
+    .info {
+      text-align: left;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    .info p {
+      margin: 8px 0;
+    }
+
+    .loader {
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid #28a745;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+
+    /* Línea de progreso */
+    .progress-container {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      margin: 40px 0;
+    }
+
+    .progress-container::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      height: 5px;
+      width: 100%;
+      background-color: #d3d3d3;
+      z-index: 1;
+      border-radius: 5px;
+    }
+
+    .progress {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      height: 5px;
+      background-color: #28a745;
+      z-index: 2;
+      border-radius: 5px;
+      transition: width 0.5s ease;
+    }
+
+    .circle {
+      background-color: #d3d3d3;
+      color: white;
+      border-radius: 50%;
+      height: 40px;
+      width: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+      position: relative;
+      transition: background-color 0.3s ease;
+    }
+
+    .circle.active {
+      background-color: #28a745;
+    }
+
+    .tracking {
+      font-size: 14px;
+      color: #555;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Your shipment is on its way 🚚</h2>
+    <div class="loader"></div>
+
+    <div class="info">
+      <p><strong>Tracking number:</strong> ISH12345678CO</p>
+      <p><strong>Sent by:</strong> Lucio casetes</p>
+      <p><strong>From:</strong> iShop Express Office, Amazonas, Colombia</p>
+      <p><strong>To:</strong> Maynor Alexis Morales Gonzalez</p>
+      <p><strong>Destination:</strong> 308 Lynn Dr, Hockessin, DE 19707</p>
+      <p><strong>Estimated delivery:</strong> October 23, 2025</p>
+    </div>
+
+    <div class="progress-container">
+      <div class="progress" id="progress"></div>
+      <div class="circle active">1</div>
+      <div class="circle">2</div>
+      <div class="circle">3</div>
+      <div class="circle">4</div>
+    </div>
+    <div class="tracking">1. Shipped — 2. In Transit — 3. Customs — 4. Delivered</div>
+  </div>
+
+  <script>
+    // Simulación del progreso
+    const progress = document.getElementById("progress");
+    const circles = document.querySelectorAll(".circle");
+    let currentActive = 2; // cambia este número (1 a 4) según el estado actual del envío
+
+    circles.forEach((circle, idx) => {
+      if (idx < currentActive) {
+        circle.classList.add("active");
+      } else {
+        circle.classList.remove("active");
+      }
+    });
+
+    const actives = document.querySelectorAll(".active");
+    progress.style.width = ((actives.length - 1) / (circles.length - 1)) * 100 + "%";
+  </script>
+</body>
+</html>
