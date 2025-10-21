@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>USA Shipping Office</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 50px;
+      background-color: #f4f4f4;
+    }
+    .container {
+      background: #fff;
+      padding: 30px;
+      max-width: 400px;
+      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    img {
+      max-width: 150px;
+      margin-bottom: 20px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 15px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    button {
+      background: #007BFF;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .error {
+      color: red;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Logo -->
+    <img src="logo.png" alt="Company Logo">
+
+    <h1>USA SHIPPING OFFICE</h1>
+    <h2>Enter Tracking Number</h2>
+
+    <input type="text" id="trackingInput" placeholder="Tracking number">
+    <button onclick="verifyTracking()">Verify</button>
+
+    <p id="errorMessage" class="error"></p>
+  </div>
+
+  <script>
+    function verifyTracking() {
+      const code = document.getElementById("trackingInput").value.trim().toUpperCase();
+      const errorMessage = document.getElementById("errorMessage");
+      errorMessage.innerText = "";
+
+      // 🔹 Aquí agregas tus códigos y redirecciones:
+      if (code === "ISH12345678CO") {
+        window.location.href = "status.html";
+      }
+      else if (code === "TX-MIA-2093341") {
+        window.location.href = "status2.html";
+      }
+      else if (code === "TX-NYC-9834410") {
+        window.location.href = "status3.html";
+      }
+      else if (code === "TX-CHI-1148723") {
+        window.location.href = "status4.html";
+      }
+
+      // 🔹 COPIA DESDE AQUÍ PARA AGREGAR MÁS:
+      /*
+      else if (code === "TU-NUEVO-CODIGO") {
+        window.location.href = "tuarchivo.html";
+      }
+      */
+      // 🔹 Hasta aquí (solo copia y cambia los nombres).
+
+      else {
+        errorMessage.innerText = "Invalid tracking number. Please try again.";
+      }
+    }
+  </script>
+</body>
+</html>
